@@ -6,4 +6,6 @@ urlpatterns = [
     path("apply/",views.application,name="apply"),
     path("dept/",views.dept,name="dept"),
     path("ece/",views.ece,name="ece"),
+    path("eee/",views.eee,name="eee"),
+    path("cse/",views.cse,name="cse"),
 ]
