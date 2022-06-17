@@ -1,4 +1,4 @@
-from django.shortcuts import render
+.from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import Student
@@ -17,7 +17,6 @@ def application(request):
             department = request.POST["department"],
             mobile = request.POST["mobile"],
         )
-      #  return HttpResponseRedirect(reverse("menu:home"))
         return HttpResponseRedirect(reverse("studentapp:home"))
     return render(request,"studentapp/apply.html")
 
@@ -26,9 +25,6 @@ def dept(request):
 
 
 def ece(request):
-     data = Student.objects.filter(department__istartswith='ECE')
-     return render(request,"studentapp/ece.html",{"data":data})
-
-
-
+    data = Student.objects.filter(department__exact="ECE")
+    return render(request,"studentapp/ece.html",{"data":data})
 

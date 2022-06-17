@@ -7,4 +7,7 @@ class Student(models.Model):
     department = models.CharField(max_length=200)
     mobile = models.IntegerField()
 
+    def __str__(self):
+        return self.department
+
 
