@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from models import Student
+from django.urls import reverse
+from .models import Student
 
 
 # Create your views here.
@@ -13,11 +14,11 @@ def application(request):
         Student.objects.create(
             name=request.POST["name"],
             email = request.POST["email"],
-            DEPARTMENT_NAME = request.POST["DEPARTMENT_NAME"],
+            department = request.POST["department"],
             mobile = request.POST["mobile"],
         )
       #  return HttpResponseRedirect(reverse("menu:home"))
-        return HttpResponseRedirect(reverse("studentapp:apply"))
+        return HttpResponseRedirect(reverse("studentapp:home"))
     return render(request,"studentapp/apply.html")
 
 def dept(request):
@@ -25,7 +26,9 @@ def dept(request):
 
 
 def ece(request):
-    data = Student.objects.filter()
+     data = Student.objects.filter(department__istartswith='ECE')
+     return render(request,"studentapp/ece.html",{"data":data})
+
 
 
 
